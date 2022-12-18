@@ -63,3 +63,17 @@ for i in range(N-1, -1, -1):
 
 
 print("Solved matrix:\n", matrix, "\n")
+
+output = str()
+output+=str(N)+"\n"
+output+=np.array2string(matrix[:,:N], max_line_width=1000000000, separator=" ", formatter={'float_kind':lambda x: "%.9f" % x}).replace("[","").replace("]","").replace("  "," ")+"\n"
+output+=np.array2string(np.transpose(matrix[:,N]), max_line_width=1000000000, separator=" ", formatter={'float_kind':lambda x: "%.9f" % x}).replace("[","").replace("]","").replace("  "," ")
+
+output = output.split("\n")
+for i in range(len(output)):
+    output[i] = output[i].lstrip()+"\n"
+
+output_f = open("output.txt", "w")
+for line in output:
+    output_f.write(line)
+output_f.close()
